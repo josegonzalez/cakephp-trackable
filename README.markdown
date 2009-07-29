@@ -1,5 +1,6 @@
 The Trackable Behavior Plugin allows you to easily keep track of who created a record and the person that last modified it
 
+## Background
 I was reading Matt Curry's Super Awesome Advanced CakePHP Tips (http://www.pseudocoder.com/free-cakephp-book/) and saw he had a behavior that tracked creation and deletion by user per record. I had been using WhoDidIt Behavior by Daniel Vechiatto (http://bakery.cakephp.org/articles/view/whodidit-behavior-automagic-created_by-and-modified_by-fields), and while I liked Matt's behavior, I thought binding the models automatically in the behavior was much slicker. So here I've melded the two behaviors into one.
 
 ## Installation
