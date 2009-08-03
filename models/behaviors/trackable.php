@@ -47,14 +47,14 @@ class TrackableBehavior extends ModelBehavior {
 		if ($this->settings[$model->alias]['auto_bind']) {
 		    if ($hasFieldCreatedBy) {
 				$commonBelongsTo = array(
-					'CreatedUser' => array('className' => $this->settings[$model->alias]['user_model'],
+					Inflector::classify($this->settings[$model->alias]['created_by_field']) => array('className' => $this->settings[$model->alias]['user_model'],
 						'foreignKey' => $this->settings[$model->alias]['created_by_field']));
 				$model->bindModel(array('belongsTo' => $commonBelongsTo), false);
 			}
 
 			if ($hasFieldModifiedBy) {
 				$commonBelongsTo = array(
-					'ModifiedUser' => array('className' => $this->settings[$model->alias]['user_model'],
+					Inflector::classify($this->settings[$model->alias]['modified_by_field']) => array('className' => $this->settings[$model->alias]['user_model'],
 						'foreignKey' => $this->settings[$model->alias]['modified_by_field']));
 				$model->bindModel(array('belongsTo' => $commonBelongsTo), false);
 			}
