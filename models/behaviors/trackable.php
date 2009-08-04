@@ -16,7 +16,7 @@ class TrackableBehavior extends ModelBehavior {
 	 * @var array
 	 * @access protected
 	 */
-	protected $__settings = array(
+	var $__settings = array(
 		'user_model' => 'User',    //name of User model
 		'created_by_field' => 'created_by',    //the name of the "created_by" field in DB (default 'created_by')
 		'modified_by_field' => 'modified_by',  //the name of the "modified_by" field in DB (default 'modified_by')
