@@ -7,7 +7,7 @@
  * @author Jose Diaz-Gonzalez
  * @package app
  * @subpackage app.models.behaviors
- * @version 1.1
+ * @version 1.2
  */
 class TrackableBehavior extends ModelBehavior {
 /**

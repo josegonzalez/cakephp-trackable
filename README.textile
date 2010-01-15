@@ -15,6 +15,18 @@ h2. Usage
 # Implement Matt Curry's method of "Getting the Logged In User from Anywhere":http://www.pseudocoder.com/free-cakephp-book/
 # In the model that needs to be tracked, add :
 	@var $actsAs = array('Trackable.Trackable')@
+# If you have not implemented the @User::get()@ method but still want to use this behavior, follow this example (will always override the @User::get()@ method):
+<pre><code><?php
+class Post extends Model {
+	var $name = 'Post';
+	var $actsAs = array('Trackable');
+	function myCustomSave($data, $user_id) {
+		$this->trackable_id = $user_id;
+		return $this->save($data);
+	}
+}
+?>
+</code></pre>
 
 At this point, everything should theoretically work.
 
