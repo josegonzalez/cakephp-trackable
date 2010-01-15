@@ -10,12 +10,12 @@
  * @version 1.1
  */
 class TrackableBehavior extends ModelBehavior {
-	/**
-	 * Default settings for a model that has this behavior attached.
-	 *
-	 * @var array
-	 * @access protected
-	 */
+/**
+ * Default settings for a model that has this behavior attached.
+ *
+ * @var array
+ * @access protected
+ */
 	var $__settings = array(
 		'user_model' => 'User',    //name of User model
 		'created_by_field' => 'created_by',    //the name of the "created_by" field in DB (default 'created_by')
@@ -23,13 +23,13 @@ class TrackableBehavior extends ModelBehavior {
 		'auto_bind' => true     //automatically bind the model to the User model (default true)
 	);
 
-	/**
-	 * Initiate behaviour for the model using settings.
-	 *
-	 * @param object $Model Model using the behaviour
-	 * @param array $settings Settings to override for model.
-	 * @access public
-	 */
+/**
+ * Initiate behaviour for the model using settings.
+ *
+ * @param object $Model Model using the behaviour
+ * @param array $settings Settings to override for model.
+ * @access public
+ */
 	function setup(&$model, $config = array()) {
 		$this->settings[$model->alias] = $this->__settings;
 
@@ -61,12 +61,12 @@ class TrackableBehavior extends ModelBehavior {
 		}
 	}
 
-	/**
-	 * Sets the User_id for the created_by and modified_by fields for this model
-	 *
-	 * @return void
-	 * @author Matt Curry
-	 **/
+/**
+ * Sets the User_id for the created_by and modified_by fields for this model
+ *
+ * @return void
+ * @author Matt Curry
+ **/
 	function beforeValidate(&$model) {
 		$settings = $this->settings[$model->alias];
 		if (empty($model->data[$model->alias][$model->primaryKey])) {
