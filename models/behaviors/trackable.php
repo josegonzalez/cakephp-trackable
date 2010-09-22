@@ -5,6 +5,7 @@
  * Combines WhoDidIt behavior (the setup phase) with Matt Curry's Trackable Behavior
  * 
  * @author Jose Diaz-Gonzalez
+ * @modified_by bazz- ;)
  * @package app
  * @subpackage app.models.behaviors
  * @version 1.2
