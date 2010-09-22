@@ -67,14 +67,15 @@ class TrackableBehavior extends ModelBehavior {
  * @return void
  * @author Matt Curry
  **/
-	function beforeValidate(&$model) {
-		$settings = $this->settings[$model->alias];
-		$trackable_id = (isset($model->trackable_id)) ? $model->trackable_id : User::get('id');
-		if (empty($model->data[$model->alias][$model->primaryKey])) {
-			$model->data[$model->alias][$settings['created_by_field']] = $trackable_id;
-		}
-		$model->data[$model->alias][$settings['modified_by_field']] = $trackable_id;
-		return true;
-	}
-}
+  function beforeValidate(&$model) {
+            $settings = $this->settings[$model->alias];
+        if (isset($model->data[$model->alias][$model->primaryKey])) { // added to see if this not a habtm model - otherwise issues with null records with only created_by and modified_by filled in database.
+            $trackable_id = (isset($model->trackable_id)) ? $model->trackable_id : User::get('id');
+            if (empty($model->data[$model->alias][$model->primaryKey])) {
+                    $model->data[$model->alias][$settings['created_by_field']] = $trackable_id;
+            }
+            $model->data[$model->alias][$settings['modified_by_field']] = $trackable_id;
+            return true;
+        }
+    }
 ?>
