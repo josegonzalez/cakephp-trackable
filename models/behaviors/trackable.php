@@ -17,10 +17,12 @@ class TrackableBehavior extends ModelBehavior {
  * @access protected
  */
 	var $__settings = array(
-		'user_model' => 'User',    //name of User model
-		'created_by_field' => 'created_by',    //the name of the "created_by" field in DB (default 'created_by')
-		'modified_by_field' => 'modified_by',  //the name of the "modified_by" field in DB (default 'modified_by')
-		'auto_bind' => true     //automatically bind the model to the User model (default true)
+		'user_model' => 'User',                // name of User model
+		'created_by_field' => 'created_by',    // the name of the "created_by" field in DB (default 'created_by')
+		'modified_by_field' => 'modified_by',  // the name of the "modified_by" field in DB (default 'modified_by')
+		'auto_bind' => true,                   // automatically bind the model to the User model (default true)
+		'user_singleton' => true,              // User the User::get() syntax
+		'require_id' => false                  // Require that the trackable_id be set beforeSave()
 	);
 
 /**
@@ -69,7 +71,24 @@ class TrackableBehavior extends ModelBehavior {
  **/
 	function beforeValidate(&$model) {
 		$settings = $this->settings[$model->alias];
-		$trackable_id = (isset($model->trackable_id)) ? $model->trackable_id : User::get('id');
+		$trackable_id = null;
+
+		if ($model->trackable_id) {
+			$trackable_id = $model->trackable_id;
+		}
+
+		if (!$trackable_id && class_exists('Authsome')) {
+			$trackable_id = Authsome::get('id');
+		}
+
+		if (!$trackable_id && $settings['user_singleton']) {
+			$trackable_id = User::get('id');
+		}
+
+		if (!$trackable_id) {
+			return !$settings['require_id'];
+		}
+
 		if (empty($model->data[$model->alias][$model->primaryKey])) {
 			$model->data[$model->alias][$settings['created_by_field']] = $trackable_id;
 		}
