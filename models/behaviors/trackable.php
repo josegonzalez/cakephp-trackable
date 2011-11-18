@@ -180,7 +180,7 @@ class TrackableBehavior extends ModelBehavior {
 	function getTrackableId(&$model) {
 		$trackable_id = null;
 
-		if ($model->trackable_id) {
+		if (!empty($model->trackable_id)) {
 			$trackable_id = $model->trackable_id;
 		}
 
@@ -192,7 +192,7 @@ class TrackableBehavior extends ModelBehavior {
 			$trackable_id = User::get($this->settings[$model->alias]['user_primaryKey']);
 		}
 
-		return $trackable;
+		return $trackable_id;
 	}
 
 }
