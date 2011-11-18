@@ -71,7 +71,7 @@ class TrackableBehavior extends ModelBehavior {
 			}
 		}
 
-		foreach ($fields as $field => $callbacks) {
+		foreach ($this->settings[$model->alias]['fields'] as $field => $callbacks) {
 			foreach ($callbacks as $callback) {
 				if (in_array($field, $on[$callback]) && $model->hasField($field)) {
 					$validFields[] = $field;
