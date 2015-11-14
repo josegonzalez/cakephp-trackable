@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/josegonzalez/cakephp-trackable.png?branch=master)](https://travis-ci.org/josegonzalez/cakephp-trackable) [![Coverage Status](https://coveralls.io/repos/josegonzalez/cakephp-trackable/badge.png?branch=master)](https://coveralls.io/r/josegonzalez/cakephp-trackable?branch=master) [![Total Downloads](https://poser.pugx.org/josegonzalez/cakephp-trackable/d/total.png)](https://packagist.org/packages/josegonzalez/cakephp-trackable) [![Latest Stable Version](https://poser.pugx.org/josegonzalez/cakephp-trackable/v/stable.png)](https://packagist.org/packages/josegonzalez/cakephp-trackable)
+
 # Trackable Behavior Plugin
 
 The Trackable Behavior Plugin allows you to easily keep track of who created a record and the person that last modified it
@@ -13,6 +15,21 @@ There were a bunch of troll posts of how to set the current user as the modifier
 * Talent, Commitment, Skill
 
 ## Installation
+
+_[Using [Composer](http://getcomposer.org/)]_
+
+Add the plugin to your project's `composer.json` - something like this:
+
+```composer
+  {
+    "require": {
+      "josegonzalez/cakephp-trackable": "dev-master"
+    }
+  }
+```
+
+Because this plugin has the type `cakephp-plugin` set in its own `composer.json`, Composer will install it inside your `/Plugins` directory, rather than in the usual vendors file. It is recommended that you add `/Plugins/Trackable` to your .gitignore file. (Why? [read this](http://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md).)
+
 
 _[Manual]_
 

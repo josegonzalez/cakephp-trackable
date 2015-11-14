@@ -1,0 +1,26 @@
+{
+  "name": "josegonzalez/cakephp-trackable",
+  "description": "Allows tracking who created/modified a record",
+  "type": "cakephp-plugin",
+  "keywords": [
+    "cakephp"
+  ],
+  "homepage": "http://github.com/josegonzalez/cakephp-trackable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jose Diaz-Gonzalez",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "composer/installers": "*"
+  },
+  "support": {
+    "issues": "https://github.com/josegonzalez/cakephp-trackable/issues",
+    "source": "https://github.com/josegonzalez/cakephp-trackable"
+  },
+  "extra": {
+    "installer-name": "DeletedAt"
+  }
+}
