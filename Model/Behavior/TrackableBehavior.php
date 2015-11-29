@@ -107,7 +107,7 @@ class TrackableBehavior extends ModelBehavior {
  * to the current user_id
  *
  * @param Model $Model Model instance
- * @param bool $cascade
+ * @param bool $cascade whether to cascade deletes
  * @return bool
  */
 	public function beforeDelete(Model $Model, $cascade = true) {
