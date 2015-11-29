@@ -1,4 +1,9 @@
-[![Build Status](https://travis-ci.org/josegonzalez/cakephp-trackable.png?branch=master)](https://travis-ci.org/josegonzalez/cakephp-trackable) [![Coverage Status](https://coveralls.io/repos/josegonzalez/cakephp-trackable/badge.png?branch=master)](https://coveralls.io/r/josegonzalez/cakephp-trackable?branch=master) [![Total Downloads](https://poser.pugx.org/josegonzalez/cakephp-trackable/d/total.png)](https://packagist.org/packages/josegonzalez/cakephp-trackable) [![Latest Stable Version](https://poser.pugx.org/josegonzalez/cakephp-trackable/v/stable.png)](https://packagist.org/packages/josegonzalez/cakephp-trackable)
+[![Build Status](https://img.shields.io/travis/josegonzalez/cakephp-trackable/master.svg?style=flat-square)](https://travis-ci.org/josegonzalez/cakephp-trackable) 
+[![Coverage Status](https://img.shields.io/coveralls/josegonzalez/cakephp-trackable.svg?style=flat-square)](https://coveralls.io/r/josegonzalez/cakephp-trackable?branch=master) 
+[![Total Downloads](https://img.shields.io/packagist/dt/josegonzalez/cakephp-trackable.svg?style=flat-square)](https://packagist.org/packages/josegonzalez/cakephp-trackable) 
+[![Latest Stable Version](https://img.shields.io/packagist/v/josegonzalez/cakephp-trackable.svg?style=flat-square)](https://packagist.org/packages/josegonzalez/cakephp-trackable) 
+[![Documentation Status](https://readthedocs.org/projects/cakephp-trackable/badge/?version=latest&style=flat-square)](https://readthedocs.org/projects/cakephp-trackable/?badge=latest)
+[![Gratipay](https://img.shields.io/gratipay/josegonzalez.svg?style=flat-square)](https://gratipay.com/~josegonzalez/)
 
 # Trackable Behavior Plugin
 
