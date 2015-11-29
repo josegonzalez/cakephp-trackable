@@ -10,6 +10,7 @@
  * @version 2.0
  */
 class TrackableBehavior extends ModelBehavior {
+
 /**
  * Default settings for a model that has this behavior attached.
  *
@@ -33,7 +34,7 @@ class TrackableBehavior extends ModelBehavior {
  *
  * @param Model $Model instance of model
  * @param array $config array of configuration settings.
- * @access public
+ * @return void
  */
 	public function setup(Model $Model, $config = array()) {
 		$settings = array_merge($this->_defaults, $config);
@@ -56,7 +57,7 @@ class TrackableBehavior extends ModelBehavior {
 			}
 		}
 
-		$settings['required'] = (array) $settings['required'];
+		$settings['required'] = (array)$settings['required'];
 
 		if ($settings[$Model->alias]['auto_bind']) {
 			foreach ($validFields as $field) {
@@ -77,25 +78,25 @@ class TrackableBehavior extends ModelBehavior {
  * 'create' and 'update fields to the current user_id
  *
  * @param Model $Model instance of model
- * @return boolean
+ * @return bool
  */
 	public function beforeValidate(Model $Model) {
-		$trackable_id = $this->getTrackableId($Model);
+		$trackableId = $this->getTrackableId($Model);
 
 		$create = empty($Model->data[$Model->alias][$Model->primaryKey]) && empty($Model->id);
 
-		if (!$trackable_id) {
+		if (!$trackableId) {
 			return !in_array($create ? 'create' : 'update', $this->settings[$Model->alias]['required']);
 		}
 
 		if ($create) {
 			foreach ($this->settings[$Model->alias]['event']['create'] as $field) {
-				$Model->data[$Model->alias][$field] = $trackable_id;
+				$Model->data[$Model->alias][$field] = $trackableId;
 			}
 		}
 
 		foreach ($this->settings[$Model->alias]['event']['update'] as $field) {
-			$Model->data[$Model->alias][$field] = $trackable_id;
+			$Model->data[$Model->alias][$field] = $trackableId;
 		}
 
 		return true;
@@ -106,18 +107,18 @@ class TrackableBehavior extends ModelBehavior {
  * to the current user_id
  *
  * @param Model $Model Model instance
- * @param boolean $cascade
- * @return boolean
+ * @param bool $cascade
+ * @return bool
  */
 	public function beforeDelete(Model $Model, $cascade = true) {
-		$trackable_id = $this->getTrackableId($Model);
+		$trackableId = $this->getTrackableId($Model);
 
-		if (!$trackable_id) {
+		if (!$trackableId) {
 			return !in_array('delete', $this->settings[$Model->alias]['required']);
 		}
 
 		foreach ($this->settings[$Model->alias]['event']['delete'] as $field) {
-			$Model->data[$Model->alias][$field] = $trackable_id;
+			$Model->data[$Model->alias][$field] = $trackableId;
 		}
 
 		return true;
@@ -127,19 +128,19 @@ class TrackableBehavior extends ModelBehavior {
  * Called before each find operation. Sets the 'read' fields
  * to the current user_id
  *
- * @param Model $Model	Model using the behavior
+ * @param Model $Model Model using the behavior
  * @param array $query Query parameters as set by cake
  * @return array
  */
 	public function beforeFind(Model $Model, $query) {
-		$trackable_id = $this->getTrackableId($Model);
+		$trackableId = $this->getTrackableId($Model);
 
-		if (!$trackable_id) {
+		if (!$trackableId) {
 				return !in_array('read', $this->settings[$Model->alias]['required']);
 		}
 
 		foreach ($this->settings[$Model->alias]['event']['read'] as $field) {
-			$query[$Model->alias][$field] = $trackable_id;
+			$query[$Model->alias][$field] = $trackableId;
 		}
 
 		return $query;
@@ -156,37 +157,37 @@ class TrackableBehavior extends ModelBehavior {
  * - Authsome::get($user_primaryKey)
  * - User::get($user_primaryKey)
  *
- * @param object $Model	Model using the behavior
+ * @param object $Model	 Model using the behavior
  * @return mixed user_id integer if available, false otherwise
  * @access public
  */
 	public function getTrackableId(Model $Model) {
-		$trackable_id = null;
+		$trackableId = null;
 
 		if (method_exists($Model, 'getTrackableId')) {
-			$trackable_id = $Model->getTrackableId();
+			$trackableId = $Model->getTrackableId();
 		}
 
 		if (!empty($Model->trackable_id)) {
-			$trackable_id = $Model->trackable_id;
+			$trackableId = $Model->trackable_id;
 		}
 
-		if (!$trackable_id && class_exists('AuthComponent')) {
-			$trackable_id = AuthComponent::user($this->settings[$Model->alias]['user_primaryKey']);
+		if (!$trackableId && class_exists('AuthComponent')) {
+			$trackableId = AuthComponent::user($this->settings[$Model->alias]['user_primaryKey']);
 		}
 
-		if (!$trackable_id && class_exists('Authsome')) {
-			$trackable_id = Authsome::get($this->settings[$Model->alias]['user_primaryKey']);
+		if (!$trackableId && class_exists('Authsome')) {
+			$trackableId = Authsome::get($this->settings[$Model->alias]['user_primaryKey']);
 		}
 
-		if (!$trackable_id) {
+		if (!$trackableId) {
 			$className = get_class($Model);
 			if (method_exists($className, 'get')) {
-				$trackable_id = $className::get($this->settings[$Model->alias]['user_primaryKey']);
+				$trackableId = $className::get($this->settings[$Model->alias]['user_primaryKey']);
 			}
 		}
 
-		return $trackable_id;
+		return $trackableId;
 	}
 
 }
