@@ -10,9 +10,9 @@ class AllTrackableTest extends PHPUnit_Framework_TestSuite {
  * @return void
  */
 	public static function suite() {
-		$Suite = new CakeTestSuite('All Trackable tests');
+		$suite = new CakeTestSuite('All Trackable tests');
 		$path = CakePlugin::path('Trackable') . 'Test' . DS . 'Case' . DS;
 		$suite->addTestDirectoryRecursive($path);
-		return $Suite;
+		return $suite;
 	}
 }
